@@ -14,8 +14,9 @@ from datetime import datetime, timedelta
 from django.contrib.auth import logout
 from django.core.urlresolvers import reverse
 
+from session_security.models import SessionSecurityConfiguration
 from .utils import get_last_activity, set_last_activity
-from .settings import EXPIRE_AFTER, PASSIVE_URLS
+from .settings import PASSIVE_URLS
 
 
 class SessionSecurityMiddleware(object):
@@ -29,7 +30,7 @@ class SessionSecurityMiddleware(object):
 
     def get_expire_seconds(self, request):
         """Return time (in seconds) before the user should be logged out."""
-        return EXPIRE_AFTER
+        return SessionSecurityConfiguration.get_solo().expire_after
 
     def process_request(self, request):
         """ Update last activity time or logout. """

@@ -26,11 +26,7 @@ import warnings
 from django.core import urlresolvers
 from django.conf import settings
 
-__all__ = ['EXPIRE_AFTER', 'WARN_AFTER', 'PASSIVE_URLS']
-
-EXPIRE_AFTER = getattr(settings, 'SESSION_SECURITY_EXPIRE_AFTER', 600)
-
-WARN_AFTER = getattr(settings, 'SESSION_SECURITY_WARN_AFTER', 540)
+__all__ = ['PASSIVE_URLS']
 
 PASSIVE_URLS = getattr(settings, 'SESSION_SECURITY_PASSIVE_URLS', [])
 PASSIVE_URLS += [
